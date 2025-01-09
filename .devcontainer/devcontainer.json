@@ -1,0 +1,37 @@
+{
+	"name": "colorful pwd",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"christian-kohler.path-intellisense",
+				"vadimcn.vscode-lldb",
+				"rust-lang.rust-analyzer"
+			],
+			"settings": {
+				"files.autoSave": "onFocusChange",
+				"files.trimFinalNewlines": true,
+				"files.trimTrailingWhitespace": true,
+				"editor.minimap.enabled": false,
+				"editor.fontSize": 16,
+				"editor.bracketPairColorization.enabled": true,
+				"editor.copyWithSyntaxHighlighting": false,
+				"editor.formatOnSave": true,
+				"editor.inlayHints.enabled": "on",
+				"workbench.editor.enablePreview": false,
+				"workbench.editor.enablePreviewFromQuickOpen": false,
+				"workbench.tree.renderIndentGuides": "always",
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": "explicit"
+				},
+				"[rust]": {
+					"rust-analyzer.cargo.allFeatures": true,
+					"rust-analyzer.checkOnSave.command": "clippy"
+				}
+			}
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/rust:1": {}
+	}
+}
