@@ -1,12 +1,13 @@
-use std::env;
+mod cli;
+mod pwd;
+
+use clap::Parser;
+use pwd::pwd;
 
 fn main() {
-    match env::current_dir() {
-        Ok(path) => {
-            println!("{}", path.display());
-        }
-        Err(e) => {
-            eprintln!("Error: {}", e);
-        }
-    }
+    let args = cli::Args::try_parse().unwrap();
+
+    let path = pwd(args.physical);
+
+    println!("Hello {}!", path);
 }
