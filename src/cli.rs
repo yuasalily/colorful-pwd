@@ -20,7 +20,7 @@ pub struct Args {
     pub divide: bool,
 
     #[arg(short, long, help = "Display the path with colored components")]
-    pub color: bool,
+    pub colorful: bool,
 
     #[arg(short, long, help = "Display the path in stairs format")]
     pub stairs: bool,

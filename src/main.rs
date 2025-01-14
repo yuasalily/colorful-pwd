@@ -1,7 +1,9 @@
 mod cli;
+mod colorize;
 mod pwd;
 
 use clap::Parser;
+use colorize::colorize;
 use pwd::pwd;
 
 fn main() {
@@ -9,5 +11,7 @@ fn main() {
 
     let path = pwd(args.physical);
 
-    println!("Hello {}!", path);
+    let colorful_path = colorize(args.colorful, path);
+
+    println!("Hello {}!", colorful_path);
 }
