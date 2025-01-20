@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # v1.0.0のようなタグをプッシュした時に実行
+
+jobs:
+  build:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build for Linux
+        run: cargo build --release --target=x86_64-unknown-linux-gnu
+
+      - name: Create release assets
+        run: |
+          mkdir dist
+          mv target/x86_64-unknown-linux-gnu/release/colorful-pwd dist/pwd-linux
+          cd dist && zip pwd-linux.zip pwd-linux
+
+      - name: Upload release to GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
